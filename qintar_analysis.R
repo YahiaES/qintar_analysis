@@ -109,3 +109,24 @@ count_until <- function(ayahs_count, position=1) {
   print(total_pages)
   return(surah_df$surahs_ar[1:i])
 }
+
+# count_until_dp: a dynamic programming algorithm, similar to the 
+# knapsack problem
+count_until_dp <- function(ayahs_count, position=1) {
+  n <- 114
+  w <- sum(surah_df$ayah_count)
+  matrix <- vector("list", )
+  
+  current_count <- 0
+  total_pages <- 0
+  i = 1
+  while (current_count < ayahs_count) {
+    current_surah <- surah_df[i,]
+    current_count = current_count + current_surah$ayah_count
+    print(paste(i, current_count))
+    total_pages <- total_pages + current_surah$pages_count
+    i <- i + 1
+  }
+  print(total_pages)
+  return(surah_df$surahs_ar[1:i])
+}
